@@ -1,34 +1,34 @@
 package Ganzenbord.Speciaalvakjes;
 
-import Ganzenbord.Bord;
-import Ganzenbord.Gans;
-import Ganzenbord.Vakjes;
+import Ganzenbord.Board;
+import Ganzenbord.Goose;
+import Ganzenbord.Squares;
 
 import java.util.ArrayList;
 
-public class Well extends Vakjes {
+public class Well extends Squares {
     @Override
-    public void onPass(ArrayList<Gans> ganzen){
-        for(Gans g: ganzen){
-            if(g.gevallen){
-                g.gevallen = false;
+    public void onPass(ArrayList<Goose> geese){
+        for(Goose g: geese){
+            if(g.fallen){
+                g.fallen = false;
             }
         }
     }
     @Override
-    public void uitvoeren(int i, Gans gans, Bord bord, int dobbel1, int dobbel2, ArrayList<Gans> ganzen) {
-        System.out.println(gans.positie + ", je bent in de put gevallen, wacht tot iemand je passeert om je eruit te helpen, als je laastste staat, sla 1 beurt over.");
-        boolean laatste = true;
-        for (Gans g : ganzen) {
-            if (g.positie < gans.positie) {
-                laatste = false;
+    public void execute(int i, Goose goose, Board board, int dice1, int dice2, ArrayList<Goose> geese) {
+        System.out.println(goose.position + ", je bent in de put gevallen, wacht tot iemand je passeert om je eruit te helpen, als je laastste staat, sla 1 beurt over.");
+        boolean last = true;
+        for (Goose g : geese) {
+            if (g.position < goose.position) {
+                last = false;
                 break;
             }
         }
-        if (laatste) {
-            gans.beurtOverslaan = true;
+        if (last) {
+            goose.skipTurn = true;
         } else {
-            gans.gevallen = true;
+            goose.fallen = true;
         }
     }
 }

@@ -1,39 +1,39 @@
 package Ganzenbord.Speciaalvakjes;
 
-import Ganzenbord.Bord;
-import Ganzenbord.Gans;
-import Ganzenbord.Vakjes;
+import Ganzenbord.Board;
+import Ganzenbord.Goose;
+import Ganzenbord.Squares;
 
 import java.util.ArrayList;
 
-public class Teleport extends Vakjes {
+public class Teleport extends Squares {
     @Override
-    public void onPass(ArrayList<Gans> ganzen){
+    public void onPass(ArrayList<Goose> geese){
 
     }
     @Override
-    public void uitvoeren(int i, Gans gans, Bord bord, int dobbel1, int dobbel2, ArrayList<Gans> ganzen) {
-        if (gans.positie == 6) {
-            System.out.println(gans.positie + ", een brug! ga verder naar 12");
-            int nieuwePositie = 12;
-            if (!bord.speelbord[nieuwePositie].isBezet) {
-                gans.positie = nieuwePositie;
+    public void execute(int i, Goose goose, Board board, int dice1, int dice2, ArrayList<Goose> geese) {
+        if (goose.position == 6) {
+            System.out.println(goose.position + ", een brug! ga verder naar 12");
+            int newPosition = 12;
+            if (!board.boardgame[newPosition].isOccupied) {
+                goose.position = newPosition;
             } else {
                 System.out.println("Dit vakje is al bezet, je gaat terug naar je oude plek");
-                gans.positie = gans.oudePositie;
+                goose.position = goose.oldPosition;
             }
-        } else if (gans.positie == 42) {
-            System.out.println(gans.positie + ", AAAAHH!! doornstruik! ga terug naar 37");
-            int nieuwePositie = 37;
-            if (!bord.speelbord[nieuwePositie].isBezet) {
-                gans.positie = nieuwePositie;
+        } else if (goose.position == 42) {
+            System.out.println(goose.position + ", AAAAHH!! doornstruik! ga terug naar 37");
+            int newPosition = 37;
+            if (!board.boardgame[newPosition].isOccupied) {
+                goose.position = newPosition;
             } else {
                 System.out.println("Dit vakje is al bezet, je gaat terug naar je oude plek");
-                gans.positie = gans.oudePositie;
+                goose.position = goose.oldPosition;
             }
-        } else if (gans.positie == 58) {
-            System.out.println(gans.positie + ", je bent dood, ga terug naar de start");
-            gans.positie = 0;
+        } else if (goose.position == 58) {
+            System.out.println(goose.position + ", je bent dood, ga terug naar de start");
+            goose.position = 0;
         }
     }
 }

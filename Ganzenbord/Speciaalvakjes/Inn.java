@@ -1,19 +1,19 @@
 package Ganzenbord.Speciaalvakjes;
 
-import Ganzenbord.Bord;
-import Ganzenbord.Gans;
-import Ganzenbord.Vakjes;
+import Ganzenbord.Board;
+import Ganzenbord.Goose;
+import Ganzenbord.Squares;
 
 import java.util.ArrayList;
 
-public class Inn extends Vakjes {
+public class Inn extends Squares {
     @Override
-    public void onPass(ArrayList<Gans> ganzen){
+    public void onPass(ArrayList<Goose> geese){
 
     }
     @Override
-    public void uitvoeren(int i, Gans gans, Bord bord, int dobbel1, int dobbel2, ArrayList<Gans> ganzen) {
-        System.out.println(gans.positie + ", Herberg, sla 1 beurt over");
-        gans.beurtOverslaan = true;
+    public void execute(int i, Goose goose, Board board, int dice1, int dice2, ArrayList<Goose> geese) {
+        System.out.println(goose.position + ", Herberg, sla 1 beurt over");
+        goose.skipTurn = true;
     }
 }

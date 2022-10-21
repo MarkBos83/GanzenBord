@@ -2,6 +2,6 @@ package Ganzenbord;
 
 public class Main {
     public static void main(String[] args) {
-        new Spel().start();
+        new Game().start();
     }
 }
