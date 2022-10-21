@@ -15,7 +15,6 @@ public class Game {
         board.makeBoard();
         begin.makePlayers(scanner, geese);
         begin.starting(geese, geese, scanner, dice1, dice2, board);
-
         boolean gameDone = false;
         do {
             for (Goose g : geese) {
@@ -23,10 +22,11 @@ public class Game {
                     g.turn(scanner, dice1, dice2, board, g, geese);
                 } else {
                     g.skipTurn = false;
-                    System.out.println("\n" + g.name + " moet deze beurt overslaan.\n");
+                    System.out.println("\n" + g.colorCode + g.color + " moet deze beurt overslaan.\n" + "\u001B[0m");
+                    System.out.println("\u001B[34m" + "----------------------------------------------------------------------------" + "\u001B[0m");
                 }
                 if (g.position == 63) {
-                    System.out.println("\n\n\n" + g.name + " heeft gewonnen!");
+                    System.out.println("\n" + g.colorCode + g.color + " heeft gewonnen!");
                     gameDone = true;
                     break;
                 }

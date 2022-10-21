@@ -8,12 +8,13 @@ import java.util.ArrayList;
 
 public class Inn extends Squares {
     @Override
-    public void onPass(ArrayList<Goose> geese){
+    public void onPass(ArrayList<Goose> geese) {
 
     }
+
     @Override
     public void execute(int i, Goose goose, Board board, int dice1, int dice2, ArrayList<Goose> geese) {
-        System.out.println(goose.position + ", Herberg, sla 1 beurt over");
+        System.out.println("Je komt op " + goose.position + ", Herberg, sla 1 beurt over");
         goose.skipTurn = true;
     }
 }

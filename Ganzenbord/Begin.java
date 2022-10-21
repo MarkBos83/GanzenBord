@@ -7,29 +7,44 @@ public class Begin {
     int amountOfPlayers;
 
     void makePlayers(Scanner scanner, ArrayList<Goose> geese) {
+        String color = "";
+        String colorCode = "";
         do {
             System.out.print("Met Hoeveel Spelers wil je spelen (tussen 2 en 6): ");
             amountOfPlayers = scanner.nextInt();
             scanner.nextLine();
         } while (amountOfPlayers < 2 || amountOfPlayers > 6);
-        System.out.println("Vul de kleuren of namen van de spelers in (druk op enter na elke ingevulde naam): ");
         for (int i = 0; i < amountOfPlayers; i++) {
-            String name;
-            boolean doubleName;
-            do {
-                doubleName = false;
-                name = scanner.nextLine();
-                for (Goose g : geese) {
-                    if (g.name.equalsIgnoreCase(name)) {
-                        doubleName = true;
-                        break;
-                    }
+            switch (i) {
+                case 0 -> {
+                    color = "CYAAN";
+                    colorCode = "\u001B[36m";
                 }
-                if (doubleName) {
-                    System.out.println("die kleur/naam is al in gebruik, kies een andere: ");
+                case 1 -> {
+                    color = "ROOD";
+                    colorCode = "\u001B[31m";
                 }
-            } while (doubleName || name.length() == 0);
-            geese.add(i, new Goose(name));
+                case 2 -> {
+                    color = "GEEL";
+                    colorCode = "\u001B[33m";
+                }
+                case 3 -> {
+                    color = "ZWART";
+                    colorCode = "\u001B[30m";
+                }
+                case 4 -> {
+                    color = "PAARS";
+                    colorCode = "\u001B[35m";
+                }
+                case 5 -> {
+                    color = "GROEN";
+                    colorCode = "\u001B[32m";
+                }
+                default -> {
+                }
+            }
+            ;
+            geese.add(i, new Goose(color, colorCode));
         }
     }
 
@@ -64,9 +79,9 @@ public class Begin {
     private ArrayList<Goose> highestThrownDice(ArrayList<Goose> geese, Scanner scanner, Dice dice1) {
         int highest = 0;
         ArrayList<Goose> highestGeese = new ArrayList<>();
-
+        System.out.println("Wie het hoogste gooit, begint.");
         for (Goose goose : geese) {
-            System.out.print(goose.name + ", druk op enter om 1 dobbelsteen te gooien");
+            System.out.print(goose.colorCode + goose.color + ", druk op enter om 1 dobbelsteen te gooien");
             scanner.nextLine();
             int thrown1 = dice1.throwDice();
             System.out.println("Je hebt " + thrown1 + " gegooid\n");
@@ -77,9 +92,12 @@ public class Begin {
             } else if (thrown1 == highest) {
                 highestGeese.add(goose);
             }
+            System.out.println("\u001B[34m" + "----------------------------------------------------------------------------" + "\u001B[0m");
         }
         if (highestGeese.size() > 1) {
             System.out.println("meerdere spelers hebben het hoogst gegooid, die spelers gooien nu opnieuw.");
+        } else {
+            System.out.println(highestGeese.get(0).color + " Heeft het hoogst gegooid en mag beginnen.\n");
         }
         return highestGeese;
     }
